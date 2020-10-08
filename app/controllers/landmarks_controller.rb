@@ -1,5 +1,5 @@
 class LandmarksController < ApplicationController
-
+  # add controller methods
   get '/landmarks' do
     @landmarks = Landmark.all
     @figures = Figure.all
@@ -7,6 +7,10 @@ class LandmarksController < ApplicationController
   end
 
   get '/landmarks/new' do
+    erb :"landmarks/new"
+  end
+
+  get '/landmarks/:id' do
     @landmark = Landmark.find(params[:id])
     erb :"landmarks/show"
   end
@@ -16,6 +20,7 @@ class LandmarksController < ApplicationController
     erb :"landmarks/edit"
   end
 
+  # edits landmark
   post '/landmarks/:id' do
     @landmark = Landmark.find(params[:id])
     @landmark.name = params['landmark']['name']
